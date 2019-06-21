@@ -18,6 +18,20 @@ module.exports = appInfo => {
   // add your middleware config here
   config.middleware = [];
 
+  config.security = {
+    csrf: false
+  }
+
+  config.mysql = {
+    client: {
+      host: 'localhost',
+      port: '3306',
+      user: 'root',
+      password: '1921622004qwer',
+      database: 'cms'
+    }
+  }
+
   // add your user config here
   const userConfig = {
     // myAppName: 'egg',
