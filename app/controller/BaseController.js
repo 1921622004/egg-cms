@@ -31,7 +31,7 @@ class BaseController extends Controller {
     const { ctx, service } = this;
     let user = ctx.request.body;
     let res = await service[this.entity].create(user);
-    this.success(res);
+    res ? this.success(res): this.error({ message: '创建失败' });
   }
 
   async update() {
@@ -40,14 +40,14 @@ class BaseController extends Controller {
     let user = ctx.request.body;
     user.id = id;
     let res = await service[this.entity].update(user);
-    this.success(res);
+    res ? this.success(res) : this.error({ message: '更新失败' });
   }
 
   async destroy() {
     const { ctx, service } = this;
     let id = ctx.params.id;
     let res = await service[this.entity].destroy(id);
-    this.success(res);
+    res ? this.success(res) : this.error({ message: '删除失败' });
   }
 }
 

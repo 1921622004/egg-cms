@@ -2,8 +2,6 @@ const { Service } = require('egg');
 
 class UserService extends Service {
   async list(pageNum, pageSize, where) {
-    console.log('=====',where);
-    
     const list = await this.app.mysql.select(this.entity, {
       where,
       order: [['id', 'asc']],
@@ -14,13 +12,16 @@ class UserService extends Service {
     return { list, total }
   }
   async create(user) {
-    return await this.app.mysql.insert(this.entity, user);
+    const res = await this.app.mysql.insert(this.entity, user);
+    return res.affectedRows > 0
   }
   async update(user) {
-    return await this.app.mysql.update(this.entity, user);
+    const res= await this.app.mysql.update(this.entity, user);
+    return res.affectedRows > 0
   }
   async destroy(id) {
-    return await this.app.mysql.delete(this.entity, { id });
+    const res = await this.app.mysql.delete(this.entity, { id });
+    return res.affectedRows > 0
   }
 }
 
