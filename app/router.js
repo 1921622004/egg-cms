@@ -19,4 +19,7 @@ module.exports = app => {
 
   router.get('/api/captcha', controller.user.captcha);
   router.post('/api/checkCaptcha', controller.user.checkCaptcha);
+
+  router.post('/signup', controller.user.signup);
+  router.post('/login', controller.user.login);
 };
