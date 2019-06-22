@@ -16,4 +16,7 @@ module.exports = app => {
 
   router.get('/api/role/getUser', controller.role.getUser);
   router.post('/api/role/setUser', controller.role.setUser);
+
+  router.get('/api/captcha', controller.user.captcha);
+  router.post('/api/checkCaptcha', controller.user.checkCaptcha);
 };

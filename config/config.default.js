@@ -19,7 +19,9 @@ module.exports = appInfo => {
   config.middleware = [];
 
   config.security = {
-    csrf: false
+    csrf: false,
+    // 域名白名单
+    domainWhiteList: ['http://localhost:8000']
   }
 
   config.mysql = {
