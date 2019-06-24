@@ -5,6 +5,8 @@
  */
 module.exports = app => {
   const { router, controller } = app;
+  // const authMiddleware = app.middleware.auth(app.config.auth, app);
+
   router.get('/', controller.home.index);
   router.resources('user', '/api/user', controller.user);
   router.resources('role', '/api/role', controller.role);

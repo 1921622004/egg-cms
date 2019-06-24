@@ -16,7 +16,15 @@ module.exports = appInfo => {
   config.keys = appInfo.name + '_1560953910779_6818';
 
   // add your middleware config here
-  config.middleware = [];
+  config.middleware = [
+    'auth'
+  ];
+
+  config.auth = {
+    authUrls: ['/api/role/getUser', '/api/role/serUser']
+  }
+
+  config.jwtSecret = 'awesome23';
 
   config.security = {
     csrf: false,

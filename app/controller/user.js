@@ -1,5 +1,6 @@
 const BaseController = require('./BaseController');
 const svgCaptcha = require('svg-captcha');
+const { sign } = require('jsonwebtoken');
 
 class UserController extends BaseController {
   constructor(...arg) {
@@ -42,14 +43,12 @@ class UserController extends BaseController {
   }
 
   async login() {
-    const { ctx, service } = this;
+    const { ctx, service, config } = this;
     const { username, password } = ctx.request.body;
     const result = await service.user.login(username, password);
-    result ? this.success({
-      message: '登陆成功'
-    }) : this.error({
-      message: '登陆失败'
-    })
+    result && result.length > 0 ? this.success({
+      token: sign(JSON.parse(JSON.stringify(result[0])), config.jwtSecret)
+    }) : this.error({message: '登陆失败'})
   }
 
 }

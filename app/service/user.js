@@ -18,10 +18,10 @@ class UserService extends BaseService {
   }
 
   async login(username, password) {
-    const res = await this.app.mysql.select('user', {
-      where: {username, password}
+    return await this.app.mysql.select('user', {
+      where: {username, password},
+      limit: 1
     });
-    return res && res.length > 0 
   }
 
 }
